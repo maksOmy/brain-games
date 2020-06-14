@@ -1,0 +1,35 @@
+{
+  "name": "frontend-project-lvl1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "build",
+    "eslint:github-action": "eslint ."
+  },
+  "bin": {
+    "brain-games": "bin/brain-games.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maksOmy/frontend-project-lvl1.git"
+  },
+  "keywords": [
+    "lvl1"
+  ],
+  "type": "module",
+  "author": "Maxim Antipov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maksOmy/frontend-project-lvl1/issues"
+  },
+  "homepage": "https://github.com/maksOmy/frontend-project-lvl1#readme",
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0"
+  }
+}
