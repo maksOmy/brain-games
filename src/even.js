@@ -1,28 +1,13 @@
 import readlineSync from 'readline-sync';
-import { name }from '../bin/brain-even.js';
 
-function getRandomInt(min, max) {
+function getRandomNum(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;// Максимум не включается, минимум включается
+  return Math.floor(Math.random() * (max - min)) + min;
 }
+   
+export const getRandomQuestion = () => getRandomNum(1, 100);
+export const gameRules = 'Answer "yes" if the number is even, otherwise answer "no".';
+export const getUserAnswer = () => readlineSync.question('Your answer: ', { limit: ['yes', 'no'] });
+export const checkCorrectAnswer = (num) => num % 2 !== 0 ? 'yes' : 'no';
 
-const checkAnswerUser = () => {
-  for (let i = 1; i <= 3; i += 1) {
-    const isEvenInt = (num) => num % 2 !== 0;
-    const randomNum = getRandomInt(1, 100);
-
-    console.log(`Qestion: ${randomNum}`);
-
-    const answerUser = readlineSync.keyInYN('Your answer');
-
-    if (answerUser === isEvenInt(randomNum)) {
-      console.log(`Correct!`);
-    } else {
-      return `${answerUser} is wrong answer ;(. Correct answer was ${!answerUser}.\nLet's try again, ${name}!`;
-    }
-  }
-  return `Congratulations, ${name}!`;
-};
-
-export default checkAnswerUser;
