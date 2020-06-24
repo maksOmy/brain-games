@@ -1,10 +1,10 @@
 import readlineSync from 'readline-sync';
 
-export const getRandomNum = (min, max) => {
+export function getRandomNum(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
-}
+};
 
 export const getRandomQuestion = () => getRandomNum(1, 100);
 export const gameRules = 'Answer "yes" if the number is even, otherwise answer "no".';

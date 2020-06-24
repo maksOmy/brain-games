@@ -21,9 +21,8 @@ const gameArchitecture = (gameRules, getRandomQuestion, getUserAnswer, checkCorr
     i += 1;
     console.log('Correct!');
     return gameArchitecture(gameRules, getRandomQuestion, getUserAnswer, checkCorrectAnswer);
-  } else {
-    return console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
   }
+  return console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
 };
 
 export default gameArchitecture;
