@@ -32,6 +32,7 @@
   "dependencies": {
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2",
+    "makefile": "0.0.2",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
