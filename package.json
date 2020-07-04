@@ -8,11 +8,11 @@
     "eslint:github-action": "eslint ."
   },
   "bin": {
-    "brain-even": "bin/brain-even.js",
-    "brain-calc": "bin/brain-calc.js",
-    "brain-gcd": "bin/brain-gcd.js",
-    "brain-progressing": "bin/brain-progressing.js",
-    "brain-prime": "bin/brain-prime.js"
+    "brain-even": "src/bin/brain-even.js",
+    "brain-calc": "src/bin/brain-calc.js",
+    "brain-gcd": "src/bin/brain-gcd.js",
+    "brain-progressing": "src/bin/brain-progressing.js",
+    "brain-prime": "src/bin/brain-prime.js"
   },
   "repository": {
     "type": "git",
@@ -30,11 +30,13 @@
   "homepage": "https://github.com/maksOmy/frontend-project-lvl1#readme",
   "dependencies": {
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-import": "^2.22.0",
     "makefile": "0.0.2",
+    "node": "^14.5.0",
+    "nodejs": "0.0.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
-    "eslint": "^7.2.0"
+    "eslint": "^7.3.1"
   }
 }

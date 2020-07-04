@@ -1,5 +1,4 @@
-import readlineSync from 'readline-sync';
-import { getRandomNum } from './even.js';
+import getRandomNum from '../utils.js';
 
 export const getRandomQuestion = () => {
   const randomNum = getRandomNum(1, 100);
@@ -23,7 +22,6 @@ export const getRandomQuestion = () => {
 };
 
 export const gameRules = 'What number is missing in the progression?';
-export const getUserAnswer = () => readlineSync.question('Your answer: ');
 
 export const checkCorrectAnswer = (str) => {
   const arrOfStr = str.split(' ');

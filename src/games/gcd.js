@@ -1,9 +1,9 @@
-import readlineSync from 'readline-sync';
-import { getRandomNum } from './even.js';
+import getRandomNum from '../utils.js';
 
 export const getRandomQuestion = () => {
   const fisrtNum = getRandomNum(1, 50);
   const secondNum = getRandomNum(1, 50);
+
   if (fisrtNum % 2 === 0 && secondNum % 2 === 0) {
     return `${fisrtNum} ${secondNum}`;
   }
@@ -14,7 +14,6 @@ export const getRandomQuestion = () => {
 };
 
 export const gameRules = 'Find the greatest common divisor of given numbers.';
-export const getUserAnswer = () => readlineSync.question('Your answer: ');
 
 export const checkCorrectAnswer = (str) => {
   const arrStr = str.split(' ');
