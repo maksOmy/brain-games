@@ -1,4 +1,5 @@
 import getRandomNum from '../utils.js';
+import gameArchitecture from '../index.js';
 
 export const getRandomQuestion = () => {
   const randomNum = getRandomNum(1, 100);
@@ -33,3 +34,7 @@ export const checkCorrectAnswer = (str) => {
 
   return String(previusIndex + step);
 };
+
+const game = () => gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
+
+export default game;

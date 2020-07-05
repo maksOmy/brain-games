@@ -1,7 +1,4 @@
 #!/usr/bin/env node
-import {
-  getRandomQuestion, gameRules, checkCorrectAnswer,
-} from '../src/games/even.js';
-import gameArchitecture from '../src/index.js';
+import game from '../src/games/even.js';
 
-gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
+game();

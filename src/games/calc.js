@@ -1,13 +1,16 @@
 import getRandomNum from '../utils.js';
+import gameArchitecture from '../index.js';
 
-const words = ['+', '-', '*'];
-const randomIndex = Math.floor(Math.random() * words.length);
+const getRandomQuestion = () => {
+  const words = ['+', '-', '*'];
+  const randomIndex = Math.floor(Math.random() * words.length);
 
-export const getRandomQuestion = () => `${getRandomNum(1, 10)} ${words[randomIndex]} ${getRandomNum(1, 10)}`;
+  return `${getRandomNum(1, 10)} ${words[randomIndex]} ${getRandomNum(1, 10)}`;
+};
 
-export const gameRules = 'What is the result of the expression?';
+const gameRules = 'What is the result of the expression?';
 
-export const checkCorrectAnswer = (str) => {
+const checkCorrectAnswer = (str) => {
   const arrOfStr = str.split(' ');
 
   const sign = arrOfStr[1];
@@ -26,3 +29,7 @@ export const checkCorrectAnswer = (str) => {
   }
   return String(result);
 };
+
+const game = () => gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
+
+export default game;
