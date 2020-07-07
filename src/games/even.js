@@ -1,15 +1,22 @@
 import getRandomNum from '../utils.js';
-import gameArchitecture from '../index.js';
+import ingine from '../index.js';
 
-const getRandomQuestion = () => getRandomNum(1, 100);
-const gameRules = 'Answer "yes" if the number is even, otherwise answer "no".';
-const checkCorrectAnswer = (num) => {
-  if (num % 2 !== 0) {
-    return 'yes';
-  }
-  return 'no';
+const game = () => {
+  const getQuestion = () => getRandomNum(1, 100);
+  const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+  const getCorrectAnswer = (num) => {
+    const searchCorrectAnswer = () => {
+      if (num % 2 !== 0) {
+        return true;
+      }
+      return false;
+    };
+
+    return searchCorrectAnswer() === true ? 'yes' : 'no';
+  };
+
+  return ingine(gameRule, getQuestion, getCorrectAnswer);
 };
-
-const game = () => gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
 
 export default game;

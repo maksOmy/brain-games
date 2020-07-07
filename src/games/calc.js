@@ -1,35 +1,32 @@
 import getRandomNum from '../utils.js';
-import gameArchitecture from '../index.js';
+import ingine from '../index.js';
 
-const getRandomQuestion = () => {
+const game = () => {
+  const gameRule = 'What is the result of the expression?';  
   const words = ['+', '-', '*'];
-  const randomIndex = Math.floor(Math.random() * words.length);
+  const obj = {sign: words[getRandomNum(0, 2)], firstNum: getRandomNum(1, 10), secondNum: getRandomNum(1, 10)}
+  //const sign = () => words[getRandomNum(0, 2)];
+  //const firstNum = () => getRandomNum(1, 10);
+  //const secondNum = () => getRandomNum(1, 10);
 
-  return `${getRandomNum(1, 10)} ${words[randomIndex]} ${getRandomNum(1, 10)}`;
+  const getQuestion = () => `${obj.firstNum} ${obj.sign} ${obj.secondNum}`;  
+
+  const getCorrectAnswer = (str) => {     
+    let result = '';
+
+    if (obj.sign === '+') {
+      result = obj.firstNum + obj.secondNum;
+    }
+    if (obj.sign === '-') {
+      result = obj.firstNum - obj.secondNum;
+    }
+    if (obj.sign === '*') {
+      result = obj.firstNum * obj.secondNum;
+    }
+    return String(result);
+  };
+
+ return ingine(gameRule, getQuestion, getCorrectAnswer);
 };
-
-const gameRules = 'What is the result of the expression?';
-
-const checkCorrectAnswer = (str) => {
-  const arrOfStr = str.split(' ');
-
-  const sign = arrOfStr[1];
-  const firstNum = Number(arrOfStr[0]);
-  const secondNum = Number(arrOfStr[2]);
-
-  let result = '';
-  if (sign === '+') {
-    result = firstNum + secondNum;
-  }
-  if (sign === '-') {
-    result = firstNum - secondNum;
-  }
-  if (sign === '*') {
-    result = firstNum * secondNum;
-  }
-  return String(result);
-};
-
-const game = () => gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
 
 export default game;

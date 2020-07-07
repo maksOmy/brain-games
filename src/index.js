@@ -1,32 +1,33 @@
 import readlineSync from 'readline-sync';
 
-console.log('Welcome to the Brain Games!');
-const userName = () => readlineSync.question('May I have your name? ');
-const name = userName();
-console.log(`Hello, ${name}!`);
+const ingine = (gameRule, getQuestion, getCorrectAnswer) => {
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${name}!`);
+  console.log(gameRule);
 
-let i = 1;
-const gameArchitecture = (gameRules, getRandomQuestion, checkCorrectAnswer) => {
-  if (i === 1) {
-    console.log(gameRules);
-  }
-  if (i > 3) {
-    return console.log(`Congratulations, ${name}!`);
-  }
+  let counter = 1;
+  const gameStart = () => {
+    if (counter > 3) {
+      return console.log(`Congratulations, ${name}!`);
+    }
 
-  const needToAnswer = getRandomQuestion();
-  console.log(`Qestion: ${needToAnswer}`);
+    const question = getQuestion();
+    console.log(`Question: ${question}`);
 
-  const getUserAnswer = () => readlineSync.question('Your answer: ');
-  const userAnswer = getUserAnswer();
+    const userAnswer = readlineSync.question('Your answer: ');
+    const correctAnswer = getCorrectAnswer(question);
 
-  const correctAnswer = checkCorrectAnswer(needToAnswer);
-  if (userAnswer === correctAnswer) {
-    i += 1;
+    if (userAnswer !== correctAnswer) {
+      return console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);        
+    }
+    
+    counter += 1;
     console.log('Correct!');
-    return gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
+    return gameStart();
   }
-  return console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
+
+  console.log(gameStart());
 };
 
-export default gameArchitecture;
+export default ingine;
