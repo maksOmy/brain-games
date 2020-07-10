@@ -1,33 +1,31 @@
 import readlineSync from 'readline-sync';
 
-const ingine = (gameRule, getQuestion, getCorrectAnswer) => {
+const ingine = (gameRule, getQAndA) => {
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log(gameRule);
 
-  let counter = 1;
-  const gameStart = () => {
+  const gameStart = (counter) => {
     if (counter > 3) {
       return console.log(`Congratulations, ${name}!`);
     }
 
-    const question = getQuestion();
+    const [question, answer] = getQAndA();
     console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question('Your answer: ');
-    const correctAnswer = getCorrectAnswer(question);
+    const correctAnswer = answer;
 
     if (userAnswer !== correctAnswer) {
-      return console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);        
+      return console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
     }
-    
-    counter += 1;
-    console.log('Correct!');
-    return gameStart();
-  }
 
-  console.log(gameStart());
+    console.log('Correct!');
+    return gameStart(counter + 1);
+  };
+
+  console.log(gameStart(1));
 };
 
 export default ingine;

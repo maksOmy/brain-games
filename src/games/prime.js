@@ -1,19 +1,30 @@
-import getRandomNum from '../utils.js';
-import gameArchitecture from '../index.js';
+import getRandomInt from '../utils.js';
+import ingine from '../index.js';
 
-export const getRandomQuestion = () => getRandomNum(1, 50);
+const game = () => {
+  const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-export const gameRules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  const getQAndA = () => {
+    const resultArr = [];
 
-export const checkCorrectAnswer = (num) => {
-  for (let i = 2; i < num; i += 1) {
-    if (num % i === 0) {
-      return 'no';
-    }
-  }
-  return 'yes';
+    const question = getRandomInt(1, 50);
+    resultArr.push(question);
+
+    const isCorrectAnswer = (num) => {
+      for (let i = 2; i < num; i += 1) {
+        if (num % i === 0) {
+          return false;
+        }
+      }
+      return true;
+    };
+    const getCorrectAnswer = isCorrectAnswer(question) === true ? 'yes' : 'no';
+    resultArr.push(getCorrectAnswer);
+
+    return resultArr;
+  };
+
+  return ingine(gameRule, getQAndA);
 };
-
-const game = () => gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
 
 export default game;

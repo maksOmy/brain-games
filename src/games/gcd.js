@@ -1,35 +1,44 @@
-import getRandomNum from '../utils.js';
-import gameArchitecture from '../index.js';
+import getRandomInt from '../utils.js';
+import ingine from '../index.js';
 
-export const getRandomQuestion = () => {
-  const fisrtNum = getRandomNum(1, 50);
-  const secondNum = getRandomNum(1, 50);
+const game = () => {
+  const gameRule = 'Find the greatest common divisor of given numbers.';
 
-  if (fisrtNum % 2 === 0 && secondNum % 2 === 0) {
-    return `${fisrtNum} ${secondNum}`;
-  }
-  if (fisrtNum % 3 === 0 && secondNum % 3 === 0) {
-    return `${fisrtNum} ${secondNum}`;
-  }
-  return getRandomQuestion();
+  const getQAndA = () => {
+    const resultArr = [];
+
+    const getTooInt = (Num1, Num2) => {
+      const result = [];
+      if (Num1 % 2 === 0 && Num2 % 2 === 0) {
+        result.push(Num1, Num2);
+        return result;
+      }
+      if (Num1 % 3 === 0 && Num2 % 3 === 0) {
+        result.push(Num1, Num2);
+        return result;
+      }
+      return getTooInt(getRandomInt(1, 50), getRandomInt(1, 50));
+    };
+
+    const [firstNum, secondNum] = getTooInt(getRandomInt(1, 50), getRandomInt(1, 50));
+    const question = `${firstNum} ${secondNum}`;
+    resultArr.push(question);
+
+    const getCorrectAnswer = (Num1, Num2) => {
+      const result = [];
+      for (let i = 2; i <= 50; i += 1) {
+        if (Num1 % i === 0 && Num2 % i === 0) {
+          result.push(i);
+        }
+      }
+      const largestDivisor = String(result[result.length - 1]);
+      return resultArr.push(largestDivisor);
+    };
+    getCorrectAnswer(firstNum, secondNum);
+
+    return resultArr;
+  };
+  return ingine(gameRule, getQAndA);
 };
-
-export const gameRules = 'Find the greatest common divisor of given numbers.';
-
-export const checkCorrectAnswer = (str) => {
-  const arrStr = str.split(' ');
-  const firstNum = Number(arrStr[0]);
-  const secondNum = Number(arrStr[1]);
-
-  const result = [];
-  for (let i = 1; i <= 50; i += 1) {
-    if (firstNum % i === 0 && secondNum % i === 0) {
-      result.push(i);
-    }
-  }
-  return String(result[result.length - 1]);
-};
-
-const game = () => gameArchitecture(gameRules, getRandomQuestion, checkCorrectAnswer);
 
 export default game;
