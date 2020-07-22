@@ -1,44 +1,44 @@
 import getRandomInt from '../utils.js';
-import ingine from '../index.js';
+import engine from '../index.js';
 
-const game = () => {
-  const gameRule = 'What is the result of the expression?';
+const gameRule = 'What is the result of the expression?';
 
-  const getQAndA = () => {
-    const operators = ['+', '-', '*'];
-    const randomOperator = operators[getRandomInt(0, 2)];
-    const firstNum = getRandomInt(1, 10);
-    const secondNum = getRandomInt(1, 10);
-
-    const resultArr = [];
-
-    const question = `${firstNum} ${randomOperator} ${secondNum}`;
-    resultArr.push(question);
-
-    const getCorrectAnswer = (num1, operator, Num2) => {
-      let result = '';
-
-      switch (operator) {
-        case '+':
-          result = num1 + Num2;
-          break;
-        case '-':
-          result = num1 - Num2;
-          break;
-        case '*':
-          result = num1 * Num2;
-          break;
-        default:
-          result = 'your answer is crazy ;)';
-      }
-
-      return resultArr.push(String(result));
-    };
-    getCorrectAnswer(firstNum, randomOperator, secondNum);
-
-    return resultArr;
-  };
-  return ingine(gameRule, getQAndA);
+const searchCorrectAnswer = (num1, operator, num2) => {
+  switch (operator) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    default:
+      return 'Is crazy answer ;)';
+  }
 };
 
-export default game;
+const getGameValues = () => {
+  const getQuestionAndAnswer = () => {
+    const operators = ['+', '-', '*'];
+    const firstOperator = 0;
+    const lastOperator = 2;
+    const randomOperator = operators[getRandomInt(firstOperator, lastOperator)];
+
+    const minNum = 1;
+    const maxNum = 10;
+    const firstNum = getRandomInt(minNum, maxNum);
+    const secondNum = getRandomInt(minNum, maxNum);
+
+    const values = [];
+
+    const questionValue = `${firstNum} ${randomOperator} ${secondNum}`;
+    values.push(questionValue);
+
+    const correctAnswer = String(searchCorrectAnswer(firstNum, randomOperator, secondNum));
+    values.push(correctAnswer);
+
+    return values;
+  };
+  return engine(gameRule, getQuestionAndAnswer);
+};
+
+export default getGameValues;

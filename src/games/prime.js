@@ -1,30 +1,34 @@
 import getRandomInt from '../utils.js';
-import ingine from '../index.js';
+import engine from '../index.js';
 
-const game = () => {
-  const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  const getQAndA = () => {
-    const resultArr = [];
+const isPrimeNum = (num, divisor = 2) => {
+  if (divisor >= num) {
+    return true;
+  }
+  if (num % divisor === 0) {
+    return false;
+  }
 
-    const question = getRandomInt(1, 50);
-    resultArr.push(question);
-
-    const isCorrectAnswer = (num) => {
-      for (let i = 2; i < num; i += 1) {
-        if (num % i === 0) {
-          return false;
-        }
-      }
-      return true;
-    };
-    const getCorrectAnswer = isCorrectAnswer(question) === true ? 'yes' : 'no';
-    resultArr.push(getCorrectAnswer);
-
-    return resultArr;
-  };
-
-  return ingine(gameRule, getQAndA);
+  return isPrimeNum(num, divisor + 1);
 };
 
-export default game;
+const getGameValues = () => {
+  const getQuestionAndAnswer = () => {
+    const values = [];
+    const minNum = 1;
+    const maxNum = 50;
+    const questionValue = getRandomInt(minNum, maxNum);
+    values.push(questionValue);
+
+    const correctAnswer = isPrimeNum(questionValue) === true ? 'yes' : 'no';
+    values.push(correctAnswer);
+
+    return values;
+  };
+
+  return engine(gameRule, getQuestionAndAnswer);
+};
+
+export default getGameValues;

@@ -1,28 +1,29 @@
 import getRandomInt from '../utils.js';
-import ingine from '../index.js';
+import engine from '../index.js';
 
-const game = () => {
-  const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
+const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-  const getQAndA = () => {
-    const resultArr = [];
-
-    const question = getRandomInt(1, 100);
-    resultArr.push(question);
-
-    const searchCorrectAnswer = (num) => {
-      if (num % 2 !== 0) {
-        return true;
-      }
-      return false;
-    };
-
-    const getCorrectAnswer = searchCorrectAnswer(question) === true ? 'yes' : 'no';
-    resultArr.push(getCorrectAnswer);
-
-    return resultArr;
-  };
-  ingine(gameRule, getQAndA);
+const checkIsEven = (num) => {
+  if (num % 2 !== 0) {
+    return true;
+  }
+  return false;
 };
 
-export default game;
+const getGameValues = () => {
+  const getQuestionAndAnswer = () => {
+    const values = [];
+    const minNum = 1;
+    const maxNum = 100;
+    const questionValue = getRandomInt(minNum, maxNum);
+    values.push(questionValue);
+
+    const correctAnswer = checkIsEven(questionValue) === true ? 'yes' : 'no';
+    values.push(correctAnswer());
+
+    return values;
+  };
+  engine(gameRule, getQuestionAndAnswer);
+};
+
+export default getGameValues;

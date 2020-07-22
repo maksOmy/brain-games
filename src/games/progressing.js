@@ -1,40 +1,59 @@
 import getRandomInt from '../utils.js';
-import ingine from '../index.js';
+import engine from '../index.js';
 
-const game = () => {
-  const gameRule = 'What number is missing in the progression?';
+const gameRule = 'What number is missing in the progression?';
 
-  const getQAndA = () => {
-    const stepProgression = getRandomInt(2, 9);
-    let step = getRandomInt(1, 100);
+const createProgressionWithHiddenNum = (hiddenNum, progressions) => {
+  const newProgressions = progressions.slice();
+  newProgressions[hiddenNum] = '..';
 
-    let question = '';
-    const resultArr = [];
+  return newProgressions.join(' ');
+};
 
-    for (let i = 1; i < 9; i += 1) {
-      if (i === stepProgression) {
-        question = `${question} ..`;
-        step += stepProgression;
-      }
-      if (i === 1) {
-        question = `${step}`;
-      }
-      step += stepProgression;
-      question = `${question} ${step}`;
-    }
-    resultArr.push(question);
+const createProgression = (stepProgression, progressionMember) => {
+  const progressionLength = 10;
+  const iter = (stepProgressing, progressingMember, progressingLength, acc) => {
+    if (progressingLength === 0) return acc;
+    const nextProgressionMember = progressingMember + stepProgressing;
+
+    const newAcc = [...acc, nextProgressionMember];
+    return iter(stepProgressing, nextProgressionMember, progressingLength - 1, newAcc);
+  };
+
+  return iter(stepProgression, progressionMember, progressionLength, []);
+};
+
+const getGameValues = () => {
+  const getQuestionAndAnswer = () => {
+    const firstMemberInProgression = 1;
+    const lastMemberInProgression = 10;
+    const hiddenNum = getRandomInt(firstMemberInProgression, lastMemberInProgression);
+
+    const minStepProgression = 1;
+    const maxStepProgression = 9;
+    const stepProgression = getRandomInt(minStepProgression, maxStepProgression);
+
+    const minProgressionMember = 1;
+    const maxProgressionMember = 100;
+    const firstProgressionMember = getRandomInt(minProgressionMember, maxProgressionMember);
+
+    const values = [];
+
+    const questionValue = createProgressionWithHiddenNum(hiddenNum,
+      createProgression(stepProgression, firstProgressionMember));
+    values.push(questionValue);
 
     const getCorrectAnswer = (str) => {
       const arrOfStr = str.split(' ');
-      const previusIndex = Number(arrOfStr[stepProgression - 1]);
+      const previusMember = Number(arrOfStr[hiddenNum - 1]);
 
-      return String(previusIndex + stepProgression);
+      return String(previusMember + stepProgression);
     };
-    resultArr.push(getCorrectAnswer(question));
+    values.push(getCorrectAnswer(questionValue));
 
-    return resultArr;
+    return values;
   };
 
-  return ingine(gameRule, getQAndA);
+  return engine(gameRule, getQuestionAndAnswer);
 };
-export default game;
+export default getGameValues;
