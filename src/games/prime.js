@@ -4,14 +4,10 @@ import engine from '../index.js';
 const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrimeNum = (num, divisor = 2) => {
-  if (divisor >= num) {
-    return true;
-  }
-  if (num % divisor === 0) {
-    return false;
-  }
+  if (divisor === num) return true;
+  if (num % divisor !== 0 && num !== 1) return isPrimeNum(num, divisor + 1);
 
-  return isPrimeNum(num, divisor + 1);
+  return false;
 };
 
 const getGameValues = () => {

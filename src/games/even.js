@@ -19,7 +19,7 @@ const getGameValues = () => {
     values.push(questionValue);
 
     const correctAnswer = checkIsEven(questionValue) === true ? 'yes' : 'no';
-    values.push(correctAnswer());
+    values.push(correctAnswer);
 
     return values;
   };

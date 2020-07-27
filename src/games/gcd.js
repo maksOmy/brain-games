@@ -3,15 +3,12 @@ import engine from '../index.js';
 
 const gameRule = 'Find the greatest common divisor of given numbers.';
 
-const isLargestDivisor = (num1, num2, divisor = 50) => {
-  if (divisor < 1) {
-    return null;
-  }
-  if (num1 % divisor === 0 && num2 % divisor === 0) {
-    return String(divisor);
+const isLargestDivisor = (num1, num2) => {
+  if (num2 === 0) {
+    return String(num1);
   }
 
-  return isLargestDivisor(num1, num2, divisor - 1);
+  return isLargestDivisor(num2, num1 % num2);
 };
 
 const getGameValues = () => {
