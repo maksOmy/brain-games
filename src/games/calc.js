@@ -3,7 +3,7 @@ import engine from '../index.js';
 
 const gameRule = 'What is the result of the expression?';
 
-const calculater = (num1, operator, num2) => {
+const calculate = (num1, operator, num2) => {
   switch (operator) {
     case '+':
       return num1 + num2;
@@ -20,7 +20,7 @@ const getGameValues = () => {
   const getQuestionAndAnswer = () => {
     const operators = ['+', '-', '*'];
     const firstIndexOperators = 0;
-    const lastIndexOperators = 2;
+    const lastIndexOperators = operators.length - 1;
     const randomOperator = operators[getRandomInt(firstIndexOperators, lastIndexOperators)];
 
     const minNum = 1;
@@ -33,7 +33,7 @@ const getGameValues = () => {
     const questionValue = `${firstNum} ${randomOperator} ${secondNum}`;
     values.push(questionValue);
 
-    const correctAnswer = String(calculater(firstNum, randomOperator, secondNum));
+    const correctAnswer = String(calculate(firstNum, randomOperator, secondNum));
     values.push(correctAnswer);
 
     return values;

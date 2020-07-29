@@ -3,14 +3,14 @@ import engine from '../index.js';
 
 const gameRule = 'What number is missing in the progression?';
 
-const createProgressionWithHiddenNum = (hiddenIndexInProgression, progressions) => {
-  const newProgressions = progressions.slice();
-  newProgressions[hiddenIndexInProgression] = '..';
+const createProgressionWithHiddenNum = (hiddenProgressionIndex, progression) => {
+  const newProgression = progression.slice();
+  newProgression[hiddenProgressionIndex] = '..';
 
-  return newProgressions.join(' ');
+  return newProgression.join(' ');
 };
 
-const createProgression = (progressionStep, progressionMember) => {
+const createProgression = (progressionStep, firstProgressionMember) => {
   const progressionLength = 10;
   const iter = (progressingMember, currentIndex, acc) => {
     if (currentIndex === 0) return acc;
@@ -20,33 +20,29 @@ const createProgression = (progressionStep, progressionMember) => {
     return iter(nextProgressionMember, currentIndex - 1, newAcc);
   };
 
-  return iter(progressionMember, progressionLength, []);
+  return iter(firstProgressionMember, progressionLength, []);
 };
 
 const getGameValues = () => {
   const getQuestionAndAnswer = () => {
-    const firstIndexInProgression = 1;
-    const lastIndexInProgression = 10;
-    const hiddenIndexInProgression = getRandomInt(firstIndexInProgression, lastIndexInProgression);
+    const firstProgressionIndex = 1;
+    const lastProgressionIndex = 10;
+    const hiddenProgressionIndex = getRandomInt(firstProgressionIndex, lastProgressionIndex);
 
-    const minStepProgression = 1;
-    const maxStepProgression = 9;
-    const progressionStep = getRandomInt(minStepProgression, maxStepProgression);
+    const minProgressionStep = 1;
+    const maxProgressionStep = 9;
+    const progressionStep = getRandomInt(minProgressionStep, maxProgressionStep);
 
     const minStartValue = 1;
     const maxStartValue = 100;
-    const StartValue = getRandomInt(minStartValue, maxStartValue);
+    const startValue = getRandomInt(minStartValue, maxStartValue);
 
     const values = [];
-    const progression = createProgression(progressionStep, StartValue);
-    const questionValue = createProgressionWithHiddenNum(hiddenIndexInProgression, progression);
+    const progression = createProgression(progressionStep, startValue);
+    const questionValue = createProgressionWithHiddenNum(hiddenProgressionIndex, progression);
     values.push(questionValue);
 
-    const getCorrectAnswer = (arr) => {
-      const previusMember = Number(arr[hiddenIndexInProgression - 1]);
-
-      return String(previusMember + progressionStep);
-    };
+    const getCorrectAnswer = (arr) => String(arr[hiddenProgressionIndex]);
     values.push(getCorrectAnswer(progression));
 
     return values;
