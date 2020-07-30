@@ -42,7 +42,7 @@ const getGameValues = () => {
     const questionValue = createProgressionWithHiddenNum(hiddenProgressionIndex, progression);
     values.push(questionValue);
 
-    const getCorrectAnswer = (progression) => String(progression[hiddenProgressionIndex]);
+    const getCorrectAnswer = (question) => String(question[hiddenProgressionIndex]);
     values.push(getCorrectAnswer(progression));
 
     return values;
