@@ -1,5 +1,5 @@
 import getRandomInt from '../utils.js';
-import engine from '../index.js';
+import runEngine from '../index.js';
 
 const gameRule = 'What is the result of the expression?';
 
@@ -16,29 +16,24 @@ const calculate = (num1, operator, num2) => {
   }
 };
 
-const getGameValues = () => {
-  const getQuestionAndAnswer = () => {
-    const operators = ['+', '-', '*'];
-    const firstIndexOperators = 0;
-    const lastIndexOperators = operators.length - 1;
-    const randomOperator = operators[getRandomInt(firstIndexOperators, lastIndexOperators)];
+const getQuestionAndAnswer = () => {
+  const operators = ['+', '-', '*'];
+  const firstIndexOperators = 0;
+  const lastIndexOperators = operators.length - 1;
+  const randomOperator = operators[getRandomInt(firstIndexOperators, lastIndexOperators)];
 
-    const minNum = 1;
-    const maxNum = 10;
-    const firstNum = getRandomInt(minNum, maxNum);
-    const secondNum = getRandomInt(minNum, maxNum);
+  const minNum = 1;
+  const maxNum = 10;
+  const firstNum = getRandomInt(minNum, maxNum);
+  const secondNum = getRandomInt(minNum, maxNum);
 
-    const values = [];
+  const questionValue = `${firstNum} ${randomOperator} ${secondNum}`;
 
-    const questionValue = `${firstNum} ${randomOperator} ${secondNum}`;
-    values.push(questionValue);
+  const correctAnswer = String(calculate(firstNum, randomOperator, secondNum));
 
-    const correctAnswer = String(calculate(firstNum, randomOperator, secondNum));
-    values.push(correctAnswer);
-
-    return values;
-  };
-  return engine(gameRule, getQuestionAndAnswer);
+  return [questionValue, correctAnswer];
 };
 
-export default getGameValues;
+const runGame = () => runEngine(gameRule, getQuestionAndAnswer);
+
+export default runGame;

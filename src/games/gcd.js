@@ -1,32 +1,30 @@
 import getRandomInt from '../utils.js';
-import engine from '../index.js';
+import runEngine from '../index.js';
 
 const gameRule = 'Find the greatest common divisor of given numbers.';
 
-const isLargestDivisor = (num1, num2) => {
+const getLargestDivisor = (num1, num2) => {
   if (num2 === 0) {
-    return String(num1);
+    return num1;
   }
 
-  return isLargestDivisor(num2, num1 % num2);
+  return getLargestDivisor(num2, num1 % num2);
 };
 
-const getGameValues = () => {
+const runGame = () => {
   const getQuestionAndAnswer = () => {
-    const values = [];
-
     const minNum = 1;
     const maxNum = 50;
-    const [firstNum, secondNum] = [getRandomInt(minNum, maxNum), getRandomInt(minNum, maxNum)];
+    const firstNum = getRandomInt(minNum, maxNum);
+    const secondNum = getRandomInt(minNum, maxNum);
+
     const questionValue = `${firstNum} ${secondNum}`;
-    values.push(questionValue);
 
-    const correctAnswer = isLargestDivisor(firstNum, secondNum);
-    values.push(correctAnswer);
+    const correctAnswer = String(getLargestDivisor(firstNum, secondNum));
 
-    return values;
+    return [questionValue, correctAnswer];
   };
-  return engine(gameRule, getQuestionAndAnswer);
+  return runEngine(gameRule, getQuestionAndAnswer);
 };
 
-export default getGameValues;
+export default runGame;

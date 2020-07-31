@@ -1,7 +1,9 @@
 import getRandomInt from '../utils.js';
-import engine from '../index.js';
+import runEngine from '../index.js';
 
 const gameRule = 'What number is missing in the progression?';
+
+const progressionLength = 10;
 
 const createProgressionWithHiddenNum = (hiddenProgressionIndex, progression) => {
   const newProgression = progression.slice();
@@ -10,8 +12,7 @@ const createProgressionWithHiddenNum = (hiddenProgressionIndex, progression) => 
   return newProgression.join(' ');
 };
 
-const createProgression = (progressionStep, firstProgressionMember) => {
-  const progressionLength = 10;
+const createProgression = (progressionStep, startValue, length) => {
   const iter = (progressingMember, currentIndex, acc) => {
     if (currentIndex === 0) return acc;
     const nextProgressionMember = progressingMember + progressionStep;
@@ -20,34 +21,29 @@ const createProgression = (progressionStep, firstProgressionMember) => {
     return iter(nextProgressionMember, currentIndex - 1, newAcc);
   };
 
-  return iter(firstProgressionMember, progressionLength, []);
+  return iter(startValue, length, []);
 };
 
-const getGameValues = () => {
-  const getQuestionAndAnswer = () => {
-    const firstProgressionIndex = 1;
-    const lastProgressionIndex = 10;
-    const hiddenProgressionIndex = getRandomInt(firstProgressionIndex, lastProgressionIndex);
+const getQuestionAndAnswer = () => {
+  const firstProgressionIndex = 1;
+  const hiddenProgressionIndex = getRandomInt(firstProgressionIndex, progressionLength);
 
-    const minProgressionStep = 1;
-    const maxProgressionStep = 9;
-    const progressionStep = getRandomInt(minProgressionStep, maxProgressionStep);
+  const minProgressionStep = 1;
+  const maxProgressionStep = 9;
+  const progressionStep = getRandomInt(minProgressionStep, maxProgressionStep);
 
-    const minStartValue = 1;
-    const maxStartValue = 100;
-    const startValue = getRandomInt(minStartValue, maxStartValue);
+  const minStartValue = 1;
+  const maxStartValue = 100;
+  const startValue = getRandomInt(minStartValue, maxStartValue);
 
-    const values = [];
-    const progression = createProgression(progressionStep, startValue);
-    const questionValue = createProgressionWithHiddenNum(hiddenProgressionIndex, progression);
-    values.push(questionValue);
+  const progression = createProgression(progressionStep, startValue, progressionLength);
+  const questionValue = createProgressionWithHiddenNum(hiddenProgressionIndex, progression);
 
-    const getCorrectAnswer = (question) => String(question[hiddenProgressionIndex]);
-    values.push(getCorrectAnswer(progression));
+  const getCorrectAnswer = (question) => String(question[hiddenProgressionIndex]);
 
-    return values;
-  };
-
-  return engine(gameRule, getQuestionAndAnswer);
+  return [questionValue, getCorrectAnswer(progression)];
 };
-export default getGameValues;
+
+const runGame = () => runEngine(gameRule, getQuestionAndAnswer);
+
+export default runGame;

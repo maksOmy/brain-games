@@ -1,6 +1,7 @@
 <a href="https://codeclimate.com/github/maksOmy/frontend-project-lvl1"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
 
-![Run ESLint on Pull Requests](https://github.com/maksOmy/frontend-project-lvl1/workflows/Run%20ESLint%20on%20Pull%20Requests/badge.svg)
+<a href="https://github.com/maksOmy/frontend-project-lvl1/actions"><img src="https://github.com/maksOmy/frontend-project-lvl1/workflows/Run%20ESLint%20on%20Pull%20Requests/badge.svg" /></a>
+
 
 Is even number?
 <a href="https://asciinema.org/a/344440" target="_blank"><img src="https://asciinema.org/a/344440.svg" /></a>
