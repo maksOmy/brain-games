@@ -1,5 +1,7 @@
 import readlineSync from 'readline-sync';
 
+const gameIteration = 3;
+
 const runEngine = (gameRule, getQuestionAndAnswer) => {
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
@@ -7,7 +9,7 @@ const runEngine = (gameRule, getQuestionAndAnswer) => {
   console.log(gameRule);
 
   const iter = (counter) => {
-    const gameIteration = 3;
+    
     if (counter > gameIteration) {
       console.log(`Congratulations, ${name}!`);
       return;

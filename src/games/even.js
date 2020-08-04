@@ -3,14 +3,14 @@ import runEngine from '../index.js';
 
 const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const IsNotEven = (num) => num % 2 !== 0;
+const IsOdd = (num) => num % 2 !== 0;
 
 const getQuestionAndAnswer = () => {
   const minNum = 1;
   const maxNum = 100;
   const questionValue = getRandomInt(minNum, maxNum);
 
-  const correctAnswer = IsNotEven(questionValue) ? 'yes' : 'no';
+  const correctAnswer = IsOdd(questionValue) ? 'yes' : 'no';
 
   return [questionValue, correctAnswer];
 };
