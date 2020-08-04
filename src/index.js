@@ -9,7 +9,6 @@ const runEngine = (gameRule, getQuestionAndAnswer) => {
   console.log(gameRule);
 
   const iter = (counter) => {
-    
     if (counter > gameIteration) {
       console.log(`Congratulations, ${name}!`);
       return;
