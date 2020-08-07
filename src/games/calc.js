@@ -18,7 +18,7 @@ const calculate = (num1, operator, num2) => {
 
 const getQuestionAndAnswer = () => {
   const operators = ['+', '-', '*'];
-  
+
   const randomOperator = operators[getRandomInt(0, operators.length - 1)];
 
   const minNum = 1;

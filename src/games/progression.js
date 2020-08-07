@@ -26,7 +26,7 @@ const createProgression = (progressionStep, startValue, length) => {
 
 const getQuestionAndAnswer = () => {
   const firstProgressionIndex = 1;
-  const hiddenProgressionIndex = getRandomInt(firstProgressionIndex, progressionLength);
+  const hiddenProgressionIndex = getRandomInt(firstProgressionIndex, progressionLength - 1);
 
   const minProgressionStep = 1;
   const maxProgressionStep = 9;

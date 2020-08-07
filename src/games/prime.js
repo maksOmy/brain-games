@@ -18,11 +18,11 @@ const isPrimeNum = (num) => {
 const getQuestionAndAnswer = () => {
   const minNum = 1;
   const maxNum = 50;
-  const questionValue = getRandomInt(minNum, maxNum);
+  const question = getRandomInt(minNum, maxNum);
 
-  const correctAnswer = isPrimeNum(questionValue) ? 'yes' : 'no';
+  const correctAnswer = isPrimeNum(question) ? 'yes' : 'no';
 
-  return [questionValue, correctAnswer];
+  return [question, correctAnswer];
 };
 
 const runGame = () => runEngine(gameRule, getQuestionAndAnswer);

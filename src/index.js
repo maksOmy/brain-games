@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const gameIteration = 3;
+const IterationsCount = 3;
 
 const runEngine = (gameRule, getQuestionAndAnswer) => {
   console.log('Welcome to the Brain Games!');
@@ -9,7 +9,7 @@ const runEngine = (gameRule, getQuestionAndAnswer) => {
   console.log(gameRule);
 
   const iter = (counter) => {
-    if (counter > gameIteration) {
+    if (counter > IterationsCount) {
       console.log(`Congratulations, ${name}!`);
       return;
     }
