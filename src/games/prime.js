@@ -5,6 +5,9 @@ const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".'
 
 const isPrimeNum = (num) => {
   const iter = (divisor = 2) => {
+    if (divisor < 2) {
+      return false;
+    }
     if (num % divisor !== 0 && num !== 1) return iter(divisor + 1);
 
     return divisor === num;

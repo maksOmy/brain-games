@@ -37,11 +37,11 @@ const getQuestionAndAnswer = () => {
   const startValue = getRandomInt(minStartValue, maxStartValue);
 
   const progression = createProgression(progressionStep, startValue, progressionLength);
-  const questionValue = createProgressionWithHiddenNum(hiddenProgressionIndex, progression);
+  const question = createProgressionWithHiddenNum(hiddenProgressionIndex, progression);
 
-  const getCorrectAnswer = (question) => String(question[hiddenProgressionIndex]);
+  const getCorrectAnswer = String(progression[hiddenProgressionIndex]);
 
-  return [questionValue, getCorrectAnswer(progression)];
+  return [question, getCorrectAnswer];
 };
 
 const runGame = () => runEngine(gameRule, getQuestionAndAnswer);

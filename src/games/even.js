@@ -8,11 +8,11 @@ const IsOdd = (num) => num % 2 !== 0;
 const getQuestionAndAnswer = () => {
   const minNum = 1;
   const maxNum = 100;
-  const questionValue = getRandomInt(minNum, maxNum);
+  const question = getRandomInt(minNum, maxNum);
 
-  const correctAnswer = IsOdd(questionValue) ? 'yes' : 'no';
+  const correctAnswer = IsOdd(question) ? 'yes' : 'no';
 
-  return [questionValue, correctAnswer];
+  return [question, correctAnswer];
 };
 
 const runGame = () => runEngine(gameRule, getQuestionAndAnswer);

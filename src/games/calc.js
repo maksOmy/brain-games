@@ -12,26 +12,25 @@ const calculate = (num1, operator, num2) => {
     case '*':
       return num1 * num2;
     default:
-      return 'Is crazy answer ;)';
+      return null;
   }
 };
 
 const getQuestionAndAnswer = () => {
   const operators = ['+', '-', '*'];
-  const firstIndexOperators = 0;
-  const lastIndexOperators = operators.length - 1;
-  const randomOperator = operators[getRandomInt(firstIndexOperators, lastIndexOperators)];
+  
+  const randomOperator = operators[getRandomInt(0, operators.length - 1)];
 
   const minNum = 1;
   const maxNum = 10;
   const firstNum = getRandomInt(minNum, maxNum);
   const secondNum = getRandomInt(minNum, maxNum);
 
-  const questionValue = `${firstNum} ${randomOperator} ${secondNum}`;
+  const question = `${firstNum} ${randomOperator} ${secondNum}`;
 
   const correctAnswer = String(calculate(firstNum, randomOperator, secondNum));
 
-  return [questionValue, correctAnswer];
+  return [question, correctAnswer];
 };
 
 const runGame = () => runEngine(gameRule, getQuestionAndAnswer);
