@@ -1,4 +1,4 @@
-import getRandomInt from '../utils.js';
+import getRandomInt from '../generator-random-int.js';
 import runEngine from '../index.js';
 
 const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';

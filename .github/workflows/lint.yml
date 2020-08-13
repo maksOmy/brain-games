@@ -22,7 +22,7 @@ jobs:
           node-version: 14
 
       # Install your dependencies
-      - run: npm ci
+      - run: make install
 
       # Run ESLint
       - name: Run linter
