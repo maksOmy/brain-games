@@ -2,6 +2,7 @@ import getRandomInt from '../utils.js';
 import runEngine from '../index.js';
 
 const gameRule = 'What is the result of the expression?';
+const operators = ['+', '-', '*'];
 
 const calculate = (num1, operator, num2) => {
   switch (operator) {
@@ -17,8 +18,6 @@ const calculate = (num1, operator, num2) => {
 };
 
 const getQuestionAndAnswer = () => {
-  const operators = ['+', '-', '*'];
-
   const randomOperator = operators[getRandomInt(0, operators.length - 1)];
 
   const minNum = 1;

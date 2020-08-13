@@ -39,9 +39,9 @@ const getQuestionAndAnswer = () => {
   const progression = createProgression(progressionStep, startValue, progressionLength);
   const question = createProgressionWithHiddenNum(hiddenProgressionIndex, progression);
 
-  const getCorrectAnswer = String(progression[hiddenProgressionIndex]);
+  const correctAnswer = String(progression[hiddenProgressionIndex]);
 
-  return [question, getCorrectAnswer];
+  return [question, correctAnswer];
 };
 
 const runGame = () => runEngine(gameRule, getQuestionAndAnswer);
