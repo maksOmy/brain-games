@@ -5,7 +5,6 @@ const gameRule = 'What number is missing in the progression?';
 
 const progressionLength = 10;
 
-
 const addHiddenMemberInProgression = (hiddenIndex, progression) => {
   const newProgression = progression.slice();
   newProgression[hiddenIndex] = '..';
