@@ -1,12 +1,12 @@
-import getRandomInt from '../generator-random-int.js';
+import getRandomInt from '../randomIntGenerator.js';
 import runEngine from '../index.js';
 
 const gameRule = 'What number is missing in the progression?';
 
 const progressionLength = 10;
-const hiddenProgressionIndex = getRandomInt(0, progressionLength - 1);
 
-const progressionHiddenIndex = (hiddenIndex, progression) => {
+
+const addHiddenMemberInProgression = (hiddenIndex, progression) => {
   const newProgression = progression.slice();
   newProgression[hiddenIndex] = '..';
 
@@ -35,7 +35,9 @@ const getQuestionAndAnswer = () => {
   const startValue = getRandomInt(minStartValue, maxStartValue);
 
   const progression = createProgression(progressionStep, startValue, progressionLength);
-  const question = progressionHiddenIndex(hiddenProgressionIndex, progression);
+  const hiddenProgressionIndex = getRandomInt(0, progression.length - 1);
+
+  const question = addHiddenMemberInProgression(hiddenProgressionIndex, progression);
 
   const correctAnswer = String(progression[hiddenProgressionIndex]);
 

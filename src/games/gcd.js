@@ -1,4 +1,4 @@
-import getRandomInt from '../generator-random-int.js';
+import getRandomInt from '../randomIntGenerator.js';
 import runEngine from '../index.js';
 
 const gameRule = 'Find the greatest common divisor of given numbers.';
